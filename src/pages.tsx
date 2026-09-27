@@ -1205,13 +1205,32 @@ export function ContactPage() {
             <SectionHeading
               eyebrow="Visit us"
               title="Learn with us in person"
-              copy="The institute’s confirmed address and Google Maps location will appear here."
+              copy="Kalpana Chawla Tailoring Institute for Women & Tailoring Shop, Kaveripattinam, Tamil Nadu 635112, India"
             />
-            <span className="button button-disabled">Get Directions</span>
+            <a
+              href="https://www.google.com/maps/search/?api=1&query=Kalpana+Chawla+Tailoring+Institute+for+Women+%26+Tailoring+Shop&query_place_id=ChIJZ0a2F-c3rDsRMzrd1o8Fn_A"
+              target="_blank"
+              rel="noopener noreferrer"
+              className="button button-primary"
+            >
+              Get Directions <span aria-hidden="true">→</span>
+            </a>
           </div>
-          <div className="map-placeholder">
-            <span>Google Maps</span>
-            <strong>Location to be confirmed</strong>
+          <div className="map-container">
+            <iframe
+              title="Kalpana Chawla Tailoring Institute for Women & Tailoring Shop Location"
+              src={
+                import.meta.env.VITE_GOOGLE_MAPS_API_KEY
+                  ? `https://www.google.com/maps/embed/v1/place?key=${import.meta.env.VITE_GOOGLE_MAPS_API_KEY}&q=place_id:ChIJZ0a2F-c3rDsRMzrd1o8Fn_A&zoom=16`
+                  : "https://maps.google.com/maps?q=Kalpana+Chawla+Tailoring+Institute+for+Women+%26+Tailoring+Shop,+Kaveripattinam,+Tamil+Nadu&t=&z=16&ie=UTF8&iwloc=&output=embed"
+              }
+              width="100%"
+              height="100%"
+              style={{ border: 0 }}
+              allowFullScreen
+              loading="lazy"
+              referrerPolicy="no-referrer-when-downgrade"
+            />
           </div>
         </div>
       </section>
