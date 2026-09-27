@@ -1,0 +1,10 @@
+{
+  "description": "Discover hands-on tailoring and Aari training for women at Kalpana Chawla Tailoring Institute, offering offline courses, custom stitching, and a curated shop.",
+  "robots": {
+    "index": false
+  },
+  "accessibility": {
+    "addBypassLinks": false,
+    "ignoreReducedMotion": false
+  }
+}

@@ -1,0 +1,150 @@
+<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 940 280" width="940" height="280" fill="none">
+  <defs>
+    <!-- Metallic Gold Gradients -->
+    <linearGradient id="gold-main" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#EAD196"/>
+      <stop offset="30%" stop-color="#C79A45"/>
+      <stop offset="70%" stop-color="#A2772A"/>
+      <stop offset="100%" stop-color="#D4AF37"/>
+    </linearGradient>
+    
+    <linearGradient id="gold-light" x1="0%" y1="0%" x2="100%" y2="0%">
+      <stop offset="0%" stop-color="#F3E5AB"/>
+      <stop offset="50%" stop-color="#C79A45"/>
+      <stop offset="100%" stop-color="#E6C98E"/>
+    </linearGradient>
+
+    <linearGradient id="burgundy-main" x1="0%" y1="0%" x2="100%" y2="100%">
+      <stop offset="0%" stop-color="#8A1235"/>
+      <stop offset="50%" stop-color="#7A0C2E"/>
+      <stop offset="100%" stop-color="#5E0721"/>
+    </linearGradient>
+
+    <!-- Subtle Drop Shadow -->
+    <filter id="logo-shadow" x="-5%" y="-5%" width="110%" height="110%">
+      <feDropShadow dx="0" dy="3" stdDeviation="3" flood-color="#5E0721" flood-opacity="0.1"/>
+    </filter>
+  </defs>
+
+  <g transform="translate(10, 10)" filter="url(#logo-shadow)">
+    <!-- ========================================== -->
+    <!-- EMBLEM GROUP (LEFT)                        -->
+    <!-- ========================================== -->
+    <g transform="translate(10, 0)">
+      <!-- Oval Frame Rings -->
+      <ellipse cx="140" cy="130" rx="115" ry="118" stroke="url(#gold-main)" stroke-width="4.5" fill="none"/>
+      <ellipse cx="140" cy="130" rx="108" ry="111" stroke="url(#gold-main)" stroke-width="1.5" stroke-dasharray="4 3" fill="none" opacity="0.6"/>
+
+      <!-- Golden Leaf Flourish at Bottom of Oval -->
+      <g transform="translate(140, 225)">
+        <path d="M 0,0 C -15,-20 -40,-15 -55,0 C -35,15 -15,10 0,0 Z" fill="url(#gold-main)"/>
+        <path d="M 0,0 C 15,-20 40,-15 55,0 C 35,15 15,10 0,0 Z" fill="url(#gold-main)"/>
+        <path d="M 0,-5 C -10,-25 -25,-30 -35,-20 C -25,-5 -10,-5 0,-5 Z" fill="url(#gold-light)"/>
+        <path d="M 0,-5 C 10,-25 25,-30 35,-20 C 25,-5 10,-5 0,-5 Z" fill="url(#gold-light)"/>
+        <circle cx="0" cy="-5" r="4" fill="url(#gold-main)"/>
+      </g>
+
+      <!-- MANNEQUIN / DRESS FORM (RIGHT SIDE INSIDE OVAL) -->
+      <g transform="translate(195, 60)">
+        <!-- Neck Topper Pin -->
+        <circle cx="28" cy="12" r="5" fill="url(#gold-main)"/>
+        <path d="M 26,17 L 30,17 L 29,28 L 27,28 Z" fill="url(#gold-main)"/>
+        
+        <!-- Dress Form Torso -->
+        <path d="M 28,28 C 20,28 14,35 12,48 C 10,60 16,72 18,90 C 20,108 10,135 8,145 C 20,148 36,148 48,145 C 46,135 36,108 38,90 C 40,72 46,60 44,48 C 42,35 36,28 28,28 Z" fill="url(#burgundy-main)"/>
+        
+        <!-- Measuring Tape wrapped around mannequin -->
+        <path d="M 12,52 Q 28,68 44,54 Q 38,78 16,72 Q 28,95 46,88 Q 38,115 12,110" stroke="url(#gold-main)" stroke-width="3" stroke-linecap="round" fill="none"/>
+        <!-- Measuring Tape Marks -->
+        <path d="M 16,57 L 18,61 M 22,61 L 24,65 M 28,63 L 30,67 M 34,61 L 36,65 M 38,58 L 40,62" stroke="#8A1235" stroke-width="1.2"/>
+        
+        <!-- Stand Base Pole -->
+        <path d="M 26,145 L 30,145 L 30,175 L 26,175 Z" fill="url(#gold-main)"/>
+        <path d="M 12,175 C 28,170 28,170 44,175 L 48,180 C 28,176 28,176 8,180 Z" fill="url(#gold-main)"/>
+      </g>
+
+      <!-- SEWING WOMAN & GRAND 'K' SILHOUETTE (LEFT SIDE INSIDE OVAL) -->
+      <g transform="translate(30, 20)">
+        <!-- Hair & Head Profile -->
+        <path d="M 115,55 C 118,58 122,62 120,68 C 118,72 114,74 112,78 C 110,82 112,86 116,88 C 112,92 106,94 102,90 C 98,86 96,80 98,74 C 95,72 92,68 94,62 C 96,56 102,52 110,53 Z" fill="#FFF5EE"/>
+        <!-- Hair Bun & Locks -->
+        <path d="M 105,32 C 85,32 70,48 70,68 C 70,78 75,85 82,90 C 78,98 72,108 65,115 C 55,125 42,135 30,140 C 20,145 10,150 0,152 C 25,148 48,135 68,118 C 78,130 85,148 88,168 C 92,190 90,210 82,230 C 102,215 115,190 120,165 C 124,142 120,122 110,105 C 118,100 125,90 125,78 C 125,65 120,55 110,48 C 122,48 132,40 130,30 C 128,20 115,22 105,32 Z" fill="url(#burgundy-main)"/>
+        <!-- Hair Bun Detail -->
+        <circle cx="90" cy="50" r="16" fill="url(#burgundy-main)"/>
+        <circle cx="88" cy="48" r="12" stroke="url(#gold-main)" stroke-width="1.5" fill="none" opacity="0.7"/>
+
+        <!-- Gold Earring -->
+        <circle cx="114" cy="74" r="3" fill="url(#gold-main)"/>
+
+        <!-- Arm & Hand Stitching with Needle & Thread -->
+        <path d="M 102,95 C 112,105 122,118 128,132 C 132,142 130,152 124,160 C 120,155 118,145 115,138 C 110,128 102,115 95,108 Z" fill="url(#burgundy-main)"/>
+        <path d="M 124,152 Q 142,142 155,130 Q 158,126 162,128 Q 164,132 158,138 Q 144,152 128,160 Z" fill="#FFF5EE"/>
+        <path d="M 158,128 C 164,124 168,122 172,124 C 174,126 172,130 166,134 Z" fill="#FFF5EE"/>
+        
+        <!-- Needle -->
+        <line x1="165" y1="135" x2="182" y2="118" stroke="url(#gold-main)" stroke-width="2" stroke-linecap="round"/>
+        <!-- Gold Thread loop connecting to dress form -->
+        <path d="M 180,120 C 195,128 200,145 190,160 C 182,172 170,165 178,150 C 185,138 200,130 215,125" stroke="url(#gold-main)" stroke-width="1.6" fill="none"/>
+
+        <!-- Sweeping Saree/Dress Fold forming lower leg of 'K' -->
+        <path d="M 68,118 C 50,145 35,175 10,210 C 25,215 50,220 85,215 C 120,205 148,185 175,160 C 150,175 120,188 88,188 C 72,188 65,175 70,155 C 75,138 85,125 95,108 Z" fill="url(#burgundy-main)"/>
+
+        <!-- Gold Trim Accents along Saree / K-stroke -->
+        <path d="M 10,210 C 35,180 60,148 78,125" stroke="url(#gold-main)" stroke-width="3.5" fill="none"/>
+        <path d="M 85,215 C 125,200 155,178 185,150" stroke="url(#gold-main)" stroke-width="2.5" fill="none"/>
+      </g>
+    </g>
+
+    <!-- ========================================== -->
+    <!-- TYPOGRAPHY GROUP (RIGHT)                   -->
+    <!-- ========================================== -->
+    <g transform="translate(305, 30)">
+      <!-- GRAND INITIAL 'K' WITH LEAF FLOURISH -->
+      <g transform="translate(0, 0)">
+        <!-- Top Left Leaf Flourish on 'K' -->
+        <path d="M 0,38 C -18,28 -35,32 -48,42 C -35,52 -18,50 0,38 Z" fill="url(#gold-main)"/>
+        <path d="M -8,32 C -22,18 -38,15 -48,22 C -40,35 -25,38 -8,32 Z" fill="url(#burgundy-main)"/>
+
+        <!-- Main 'K' Stem & Serifs -->
+        <path d="M 12,35 C 8,20 -5,12 -25,15 C -20,25 -15,40 -15,70 L -15,115 C -15,135 -22,142 -35,145 C -25,152 -5,152 10,145 C 0,140 -2,132 -2,115 L -2,70 C -2,45 5,38 12,35 Z" fill="url(#burgundy-main)"/>
+        <!-- Upper Arm of 'K' -->
+        <path d="M 0,80 C 25,52 50,30 80,18 C 72,32 50,55 25,82 Z" fill="url(#burgundy-main)"/>
+        <!-- Lower Arm of 'K' with Swirling Tail -->
+        <path d="M 15,75 C 38,100 65,130 95,152 C 108,162 125,168 140,165 C 120,165 100,155 82,140 C 58,120 35,92 15,75 Z" fill="url(#burgundy-main)"/>
+        <!-- Gold Accent Line inside K flourish -->
+        <path d="M 22,82 C 45,108 72,136 102,154 C 118,164 135,166 148,162" stroke="url(#gold-main)" stroke-width="2" fill="none"/>
+      </g>
+
+      <!-- BRAND TEXT: ALPANA CHAWLA -->
+      <g transform="translate(85, 25)">
+        <text x="0" y="72" 
+              font-family="'Playfair Display', Georgia, 'Times New Roman', serif" 
+              font-size="64" 
+              font-weight="700" 
+              letter-spacing="3" 
+              fill="url(#burgundy-main)">
+          ALPANA CHAWLA
+        </text>
+
+        <!-- SUBTITLE ROW: TAILORING INSTITUTE WITH FLANKING GOLD LINES -->
+        <g transform="translate(0, 105)">
+          <!-- Left Gold Rule -->
+          <line x1="-75" y1="0" x2="65" y2="0" stroke="url(#gold-main)" stroke-width="2.5"/>
+          
+          <!-- Center Text: TAILORING INSTITUTE -->
+          <text x="82" y="6" 
+                font-family="'DM Sans', -apple-system, BlinkMacSystemFont, 'Segoe UI', Roboto, sans-serif" 
+                font-size="25" 
+                font-weight="700" 
+                letter-spacing="9.5" 
+                fill="url(#gold-main)">
+            TAILORING INSTITUTE
+          </text>
+          
+          <!-- Right Gold Rule -->
+          <line x1="455" y1="0" x2="595" y2="0" stroke="url(#gold-main)" stroke-width="2.5"/>
+        </g>
+      </g>
+    </g>
+  </g>
+</svg>
