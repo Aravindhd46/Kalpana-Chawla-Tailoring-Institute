@@ -40,13 +40,15 @@ export function ButtonLink({
   to,
   children,
   variant = "primary",
+  onClick,
 }: {
   to: string
   children: ReactNode
   variant?: "primary" | "secondary" | "ghost" | "gold"
+  onClick?: () => void
 }) {
   return (
-    <Link to={to} className={`button button-${variant}`}>
+    <Link to={to} className={`button button-${variant}`} onClick={onClick}>
       {children}
       <span aria-hidden="true">→</span>
     </Link>
@@ -128,8 +130,10 @@ export function Header({ path }: { path: string }) {
             FAQ
           </Link>
         </nav>
-        <ButtonLink to="/courses">Join a Course</ButtonLink>
-        <ButtonLink to="/contact" variant="secondary">
+        <ButtonLink to="/courses" onClick={() => setOpen(false)}>
+          Join a Course
+        </ButtonLink>
+        <ButtonLink to="/contact" variant="secondary" onClick={() => setOpen(false)}>
           WhatsApp
         </ButtonLink>
       </div>
@@ -385,13 +389,4 @@ export function FinalCta({
   )
 }
 
-export function MobileActions() {
-  return (
-    <div className="mobile-actions">
-      <ButtonLink to="/courses">Join Course</ButtonLink>
-      <ButtonLink to="/contact" variant="secondary">
-        WhatsApp
-      </ButtonLink>
-    </div>
-  )
-}
+

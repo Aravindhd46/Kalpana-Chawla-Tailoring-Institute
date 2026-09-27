@@ -1,5 +1,5 @@
 import { useEffect, useState } from "react"
-import { Footer, Header, MobileActions } from "./components"
+import { Footer, Header } from "./components"
 import {
   AboutPage,
   ContactPage,
@@ -55,7 +55,6 @@ export default function App() {
         <CurrentPage path={path} />
       </main>
       <Footer />
-      <MobileActions />
     </div>
   )
 }

@@ -1734,10 +1734,6 @@ textarea:focus {
   font-size: 0.75rem;
 }
 
-.mobile-actions {
-  display: none;
-}
-
 @media (max-width: 1180px) {
   .desktop-nav {
     display: none;
@@ -2179,7 +2175,7 @@ textarea:focus {
 
   .footer-grid {
     grid-template-columns: 1fr 1fr;
-    padding-block: 3.5rem 6rem;
+    padding-block: 3.5rem;
   }
 
   .footer-brand {
@@ -2193,27 +2189,6 @@ textarea:focus {
   .footer-bottom .container {
     flex-direction: column;
     gap: 0.3rem;
-  }
-
-  .mobile-actions {
-    position: fixed;
-    z-index: 45;
-    right: 0;
-    bottom: 0;
-    left: 0;
-    display: grid;
-    grid-template-columns: 1fr 1fr;
-    gap: 0.5rem;
-    padding: 0.6rem;
-    border-top: 1px solid var(--line);
-    background: rgba(255, 255, 255, 0.96);
-    backdrop-filter: blur(10px);
-  }
-
-  .mobile-actions .button {
-    min-height: 3.1rem;
-    padding: 0.7rem;
-    font-size: 0.75rem;
   }
 }
 
