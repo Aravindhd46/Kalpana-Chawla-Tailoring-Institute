@@ -1,5 +1,5 @@
 [build]
-  command = "npm run build"
+  command = "([ -x node_modules/.bin/vite ] || npx -y pnpm@10.30.3 install --frozen-lockfile) && npm run build"
   publish = "dist"
   functions = "netlify/functions"
 
