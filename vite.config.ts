@@ -1,13 +1,24 @@
-import { defineConfig, type HtmlTagDescriptor, type Plugin } from 'vite'
+import { defineConfig, loadEnv, type HtmlTagDescriptor, type Plugin } from 'vite'
 import react from '@vitejs/plugin-react'
 import tailwindcss from '@tailwindcss/vite'
 import path from 'node:path'
+import nodemailer from 'nodemailer'
 
 import siteConfiguration from './.figma/make/site.json'
 
 
+
+
+
+
+
+
+
+
 // Vite config — https://vitejs.dev/config/
 export default defineConfig(({ mode }) => {
+  const env = loadEnv(mode, process.cwd(), '')
+  process.env = { ...process.env, ...env }
   // .figma/make/deploy-preview passes `--mode development` for cached-preview builds.
   const emitSourcemaps = mode === 'development'
 
@@ -18,8 +29,9 @@ export default defineConfig(({ mode }) => {
       minify: !emitSourcemaps,
     },
     plugins: [
-react(),
+      react(),
       tailwindcss(),
+      smtpApiPlugin(),
       figmaSiteConfiguration(siteConfiguration),
       figmaErrorOverlayReplay(),
       figmaReactRefreshBoundaryFallback(),
@@ -354,6 +366,85 @@ function figmaMakeKitPlugin(options: { storiesGlob: string | string[] }): Plugin
           res.end(await server.transformIndexHtml(url, HTML_BOOTSTRAP))
         } catch (err) {
           next(err as Error)
+        }
+      })
+    },
+  }
+}
+
+function smtpApiPlugin(): Plugin {
+  return {
+    name: 'smtp-api-plugin',
+    configureServer(server) {
+      server.middlewares.use(async (req, res, next) => {
+        if (req.url === '/api/send-enquiry' && req.method === 'POST') {
+          let body = ''
+          req.on('data', (chunk) => {
+            body += chunk
+          })
+          req.on('end', async () => {
+            try {
+              const data = JSON.parse(body || '{}')
+              const smtpHost = process.env.SMTP_HOST || 'smtp.gmail.com'
+              const smtpPort = parseInt(process.env.SMTP_PORT || '465')
+              const smtpUser = process.env.SMTP_USER || 'amudhachinnapillai@gmail.com'
+              const smtpPass = (process.env.SMTP_PASS || '').trim().replace(/\s+/g, '')
+
+              if (smtpPass) {
+                const transporter = nodemailer.createTransport({
+                  host: smtpHost,
+                  port: smtpPort,
+                  secure: smtpPort === 465,
+                  auth: {
+                    user: smtpUser,
+                    pass: smtpPass,
+                  },
+                })
+
+                await transporter.sendMail({
+                  from: `"Kalpana Chawla Institute" <${smtpUser}>`,
+                  to: 'amudhachinnapillai@gmail.com',
+                  replyTo: data.email || undefined,
+                  subject: `New Enquiry from ${data.name || 'Visitor'} - ${data.interest || data.service || 'General'}`,
+                  text: `Name: ${data.name}\nPhone: ${data.phone}\nEmail: ${data.email || 'N/A'}\nInterested in / Service: ${data.interest || data.service || 'N/A'}\nPreferred Date: ${data.date || 'N/A'}\nMessage:\n${data.message}`,
+                  html: `
+                    <div style="font-family: sans-serif; max-width: 600px; margin: 0 auto; padding: 20px; border: 1px solid #e5e7eb; border-radius: 8px;">
+                      <h2 style="color: #681028; border-bottom: 2px solid #b7791f; padding-bottom: 8px;">New Website Enquiry</h2>
+                      <table style="width: 100%; border-collapse: collapse; margin-top: 15px;">
+                        <tr><td style="padding: 8px; font-weight: bold; width: 140px;">Name:</td><td style="padding: 8px;">${data.name}</td></tr>
+                        <tr style="background: #f9fafb;"><td style="padding: 8px; font-weight: bold;">Phone:</td><td style="padding: 8px;">${data.phone}</td></tr>
+                        <tr><td style="padding: 8px; font-weight: bold;">Email:</td><td style="padding: 8px;">${data.email || 'Not provided'}</td></tr>
+                        <tr style="background: #f9fafb;"><td style="padding: 8px; font-weight: bold;">Interest / Service:</td><td style="padding: 8px;">${data.interest || data.service || 'General Enquiry'}</td></tr>
+                        ${data.date ? `<tr><td style="padding: 8px; font-weight: bold;">Preferred Date:</td><td style="padding: 8px;">${data.date}</td></tr>` : ''}
+                      </table>
+                      <div style="margin-top: 20px; padding: 15px; background: #faf5f0; border-left: 4px solid #681028; border-radius: 4px;">
+                        <strong>Message:</strong>
+                        <p style="white-space: pre-wrap; margin-top: 8px;">${data.message}</p>
+                      </div>
+                    </div>
+                  `,
+                })
+                console.log(`[SMTP] Successfully sent enquiry email from ${data.name} to ${smtpUser}`)
+              } else {
+                console.log(`\n========================================`)
+                console.log(`[SMTP] Enquiry received for amudhachinnapillai@gmail.com:`)
+                console.log(data)
+                console.log(`Note: To send actual emails via Gmail SMTP, set SMTP_PASS in .env`)
+                console.log(`========================================\n`)
+              }
+
+              res.setHeader('Content-Type', 'application/json')
+              res.statusCode = 200
+              res.end(JSON.stringify({ success: true, message: 'Enquiry sent successfully' }))
+            } catch (err: any) {
+              console.error('[SMTP ERROR]:', err)
+              res.setHeader('Content-Type', 'application/json')
+              res.statusCode = 500
+              res.end(JSON.stringify({ success: false, error: err.message }))
+            }
+          })
+        } else {
+          next()
         }
       })
     },

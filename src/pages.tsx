@@ -8,7 +8,15 @@ import {
   PageHero,
   SectionHeading,
 } from "./components"
-import { courses, faqs, gallery, images, products, services } from "./data"
+import {
+  contactInfo,
+  courses,
+  faqs,
+  gallery,
+  images,
+  products,
+  services,
+} from "./data"
 
 function CourseCard({ course }: { course: typeof courses[number] }) {
   return (
@@ -89,7 +97,7 @@ export function HomePage() {
             </h1>
             <p className="hero-lead">
               Practical, hands-on tailoring and Aari training for women, guided
-              by 28 years of experience.
+              by 30 years of experience.
             </p>
             <div className="trust-line">
               <span>100% Offline</span>
@@ -112,7 +120,7 @@ export function HomePage() {
               />
             </div>
             <div className="experience-seal">
-              <strong>28+</strong>
+              <strong>30+</strong>
               <span>Years of experience</span>
             </div>
             <div className="hero-note">
@@ -129,7 +137,7 @@ export function HomePage() {
       <section className="stats-strip">
         <div className="container stats-grid">
           {[
-            ["28+", "Years experience"],
+            ["30+", "Years experience"],
             ["100%", "Hands-on training"],
             ["No Age", "Limit"],
             ["Beginner", "Friendly"],
@@ -211,7 +219,7 @@ export function HomePage() {
             {[
               [
                 "01",
-                "28 Years of Experience",
+                "30 Years of Experience",
                 "Learn from an experienced tailoring mentor.",
               ],
               [
@@ -248,7 +256,7 @@ export function HomePage() {
               alt="Experienced artisan working carefully with fabric"
             />
             <div className="image-caption">
-              <strong>28+</strong>
+              <strong>30+</strong>
               <span>Years of practical experience</span>
             </div>
           </div>
@@ -256,7 +264,7 @@ export function HomePage() {
             <SectionHeading
               eyebrow="Learn from experience"
               title="Guidance grounded in real garment work"
-              copy="With 28 years of experience in tailoring and practical garment work, our training focuses on helping learners understand, practise and improve their skills."
+              copy="With 30 years of experience in tailoring and practical garment work, our training focuses on helping learners understand, practise and improve their skills."
             />
             <ul className="check-list">
               <li>Patient, in-person mentor guidance</li>
@@ -467,14 +475,14 @@ export function AboutPage() {
       <section className="section">
         <div className="container story-grid">
           <div>
-            <span className="large-number">28</span>
+            <span className="large-number">30</span>
             <span className="large-number-label">Years of experience</span>
           </div>
           <div className="story-copy">
             <SectionHeading
               eyebrow="Our story"
               title="A practical approach shaped by experience"
-              copy="The institute is built around a simple idea: tailoring is learned best by working with fabric, tools and guidance in person. Our mentor brings 28 years of garment and tailoring experience to every learner’s journey."
+              copy="The institute is built around a simple idea: tailoring is learned best by working with fabric, tools and guidance in person. Our mentor brings 30 years of garment and tailoring experience to every learner’s journey."
             />
             <p>
               We welcome complete beginners, hobby learners and women looking to
@@ -492,7 +500,7 @@ export function AboutPage() {
           <div className="split-copy">
             <SectionHeading
               eyebrow="Meet the mentor"
-              title="Patient guidance, backed by 28 years of practice"
+              title="Patient guidance, backed by 30 years of practice"
               copy="Our experienced mentor demonstrates each technique, supports hands-on practice and offers feedback that helps learners understand both the method and the finish."
             />
             <p className="muted-note">
@@ -1178,22 +1186,46 @@ export function ContactPage() {
             <SectionHeading
               eyebrow="Get in touch"
               title="We’re here to help"
-              copy="Contact information will be displayed as soon as it is confirmed by the institute."
+              copy="Reach out to us directly by phone, WhatsApp, or email, or visit us during working hours."
             />
-            {[
-              ["Phone", "Number to be confirmed"],
-              ["WhatsApp", "Number to be confirmed"],
-              ["Email", "Email to be confirmed"],
-              ["Working hours", "Hours to be confirmed"],
-            ].map(([label, value]) => (
-              <div className="contact-detail" key={label}>
-                <span>{label}</span>
-                <strong>{value}</strong>
-              </div>
-            ))}
+            <div className="contact-detail">
+              <span>Phone</span>
+              <a href={`tel:${contactInfo.phoneRaw}`}>
+                <strong>{contactInfo.phone}</strong>
+              </a>
+            </div>
+            <div className="contact-detail">
+              <span>WhatsApp</span>
+              <a
+                href={contactInfo.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+              >
+                <strong>{contactInfo.whatsapp}</strong>
+              </a>
+            </div>
+            <div className="contact-detail">
+              <span>Email</span>
+              <a href={`mailto:${contactInfo.email}`}>
+                <strong>{contactInfo.email}</strong>
+              </a>
+            </div>
+            <div className="contact-detail">
+              <span>Working hours</span>
+              <strong>{contactInfo.workingHours}</strong>
+            </div>
             <div className="button-row">
-              <span className="button button-disabled">Call Us</span>
-              <span className="button button-disabled">WhatsApp Us</span>
+              <a href={`tel:${contactInfo.phoneRaw}`} className="button button-primary">
+                Call Us
+              </a>
+              <a
+                href={contactInfo.whatsappUrl}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="button button-secondary"
+              >
+                WhatsApp Us
+              </a>
             </div>
           </div>
           <EnquiryForm />

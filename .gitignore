@@ -3,6 +3,8 @@ dist/
 build/
 .cache/
 .env*
+powershell.cmd
+.vscode/
 .vite/
 vite.config.*.timestamp-*
 *.tsbuildinfo

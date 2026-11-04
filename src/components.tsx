@@ -1,5 +1,5 @@
 import { FormEvent, ReactNode, useEffect, useState } from "react"
-import { images } from "./data"
+import { contactInfo, images } from "./data"
 
 export function navigate(path: string) {
   window.history.pushState({}, "", path)
@@ -146,7 +146,7 @@ export function Footer() {
     <footer className="site-footer">
       <div className="container footer-grid">
         <div className="footer-brand">
-          <img src={images.logo} alt="Kalpana Chawla Tailoring Institute" />
+          <img src={images.logoFooter} alt="Kalpana Chawla Tailoring Institute" />
           <p>
             Hands-on tailoring and Aari training for women, along with custom
             stitching services and women’s fashion products.
@@ -175,7 +175,9 @@ export function Footer() {
         />
         <div className="footer-column">
           <h3>Contact</h3>
-          <p>Contact details available soon</p>
+          <a href={`tel:${contactInfo.phoneRaw}`}>{contactInfo.phone}</a>
+          <a href={`mailto:${contactInfo.email}`}>{contactInfo.email}</a>
+          <span>{contactInfo.workingHours}</span>
           <Link to="/contact">Send an enquiry</Link>
           <Link to="/contact">Get directions</Link>
           <div className="social-row" aria-label="Social links">
@@ -273,11 +275,53 @@ export function EnquiryForm({
   kind?: "general" | "service"
   upload?: boolean
 }) {
-  const [sent, setSent] = useState(false)
-  const submit = (event: FormEvent) => {
+  const [status, setStatus] = useState<"idle" | "submitting" | "success" | "error">(
+    "idle"
+  )
+  const [submittedName, setSubmittedName] = useState("")
+
+  const submit = async (event: FormEvent<HTMLFormElement>) => {
     event.preventDefault()
-    setSent(true)
+    setStatus("submitting")
+
+    const form = event.currentTarget
+    const formData = new FormData(form)
+
+    const payload = {
+      name: String(formData.get("name") || "").trim(),
+      phone: String(formData.get("phone") || "").trim(),
+      email: String(formData.get("email") || "").trim(),
+      interest: String(formData.get("interest") || "").trim(),
+      service: String(formData.get("service") || "").trim(),
+      date: String(formData.get("date") || "").trim(),
+      message: String(formData.get("message") || "").trim(),
+      kind,
+    }
+
+    setSubmittedName(payload.name)
+
+    try {
+      const response = await fetch("/api/send-enquiry", {
+        method: "POST",
+        headers: {
+          "Content-Type": "application/json",
+          Accept: "application/json",
+        },
+        body: JSON.stringify(payload),
+      })
+
+      if (response.ok) {
+        setStatus("success")
+        form.reset()
+      } else {
+        throw new Error("SMTP server responded with an error")
+      }
+    } catch (err) {
+      console.error("Enquiry submission error:", err)
+      setStatus("error")
+    }
   }
+
   return (
     <form className="form-card" onSubmit={submit}>
       <div className="form-grid">
@@ -347,14 +391,36 @@ export function EnquiryForm({
           />
         </label>
       </div>
-      {sent && (
-        <p className="form-success" role="status">
-          Thank you. Your enquiry has been prepared. Please contact the
-          institute to confirm it.
-        </p>
+
+      {status === "success" && (
+        <div className="form-success" role="status">
+          <strong>Thank you{submittedName ? `, ${submittedName}` : ""}!</strong>
+          <p>
+            Your enquiry has been sent to <strong>{contactInfo.email}</strong>. We
+            will get back to you shortly.
+          </p>
+        </div>
       )}
-      <button className="button button-primary" type="submit">
-        {kind === "service" ? "Request a Quote" : "Send Enquiry"}
+
+      {status === "error" && (
+        <div className="form-error" role="status">
+          <p>
+            Unable to send your enquiry right now. Please call us directly at{" "}
+            <strong>{contactInfo.phone}</strong> or try again.
+          </p>
+        </div>
+      )}
+
+      <button
+        className="button button-primary"
+        type="submit"
+        disabled={status === "submitting"}
+      >
+        {status === "submitting"
+          ? "Sending..."
+          : kind === "service"
+            ? "Request a Quote"
+            : "Send Enquiry"}
         <span aria-hidden="true">→</span>
       </button>
     </form>

@@ -1,6 +1,16 @@
+export const contactInfo = {
+  phone: "+91 9095782897",
+  phoneRaw: "+919095782897",
+  whatsapp: "+91 9095782897",
+  whatsappUrl: "https://wa.me/919095782897",
+  email: "amudhachinnapillai@gmail.com",
+  workingHours: "8:00 AM to 7:00 PM",
+}
+
 export const images = {
-  logo: "/assets/Kalpana_Chawla_Tailoring_Institute_Logo.svg",
-  hero: "/assets/woman-sewing.jpg",
+  logo: "/assets/kalpana-chawla-logo-header.png",
+  logoFooter: "/assets/kalpana-chawla-logo.png",
+  hero: "/assets/hero-banner.jpg",
   hands: "/assets/tailoring-hands.jpg",
   machine: "/assets/sewing-machine.jpg",
   embroidery: "/assets/embroidery.jpg",
@@ -204,6 +214,6 @@ export const faqs = [
     category: "General",
     question: "How can I contact the institute?",
     answer:
-      "Use the contact enquiry form or the call and WhatsApp actions once contact details are confirmed.",
+      "Use our contact enquiry form or reach out directly by phone or WhatsApp at +91 9095782897, or email amudhachinnapillai@gmail.com.",
   },
 ]
